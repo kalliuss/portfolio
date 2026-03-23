@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Türk Dili II — Vize Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0e12;
+    --surface: #13151c;
+    --border: #1e2130;
+    --accent: #f0c040;
+    --accent2: #5b8dee;
+    --accent3: #e05c5c;
+    --text: #cdd3e0;
+    --muted: #5a607a;
+    --head: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    padding: 32px 24px 64px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--head);
+    letter-spacing: -0.5px;
+  }
+
+  header h1 span { color: var(--accent); }
+
+  header .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: #161820;
+  }
+
+  .card-header .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .card-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--head);
+    letter-spacing: 0.3px;
+  }
+
+  .card-body { padding: 12px 14px; }
+
+  /* rows */
+  .row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 6px 0;
+    border-bottom: 1px solid #1a1d28;
+  }
+  .row:last-child { border-bottom: none; }
+
+  .row .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tag.y  { background: #1a2a10; color: #7cc44a; border: 1px solid #2c4a1a; }
+  .tag.n  { background: #2a1010; color: #e05c5c; border: 1px solid #4a1a1a; }
+  .tag.k  { background: #10182a; color: #5b8dee; border: 1px solid #1a2a4a; }
+  .tag.ö  { background: #2a1f10; color: var(--accent); border: 1px solid #4a3510; }
+  .tag.e  { background: #1a1030; color: #b08af5; border: 1px solid #2a1a50; }
+
+  .row .content { flex: 1; font-size: 13px; }
+
+  .row .content strong { color: var(--head); font-weight: 600; }
+  .row .content em { color: var(--accent); font-style: normal; font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+
+  /* comparison tables */
+  .cmp {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+    font-size: 12.5px;
+  }
+  .cmp th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+  .cmp td {
+    padding: 5px 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #1a1d28;
+  }
+  .cmp tr:last-child td { border-bottom: none; }
+  .cmp td:first-child { color: var(--head); font-weight: 500; width: 38%; }
+
+  /* full-width card */
+  .card.full { grid-column: 1 / -1; }
+
+  .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 0;
+  }
+  .pill {
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    border: 1px solid var(--border);
+  }
+  .pill.a { background: #1a1030; color: #b08af5; border-color: #2a1a50; }
+  .pill.b { background: #10182a; color: #5b8dee; border-color: #1a2a4a; }
+  .pill.c { background: #1a2a10; color: #7cc44a; border-color: #2c4a1a; }
+  .pill.d { background: #2a1f10; color: var(--accent); border-color: #4a3510; }
+
+  .divider {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    padding: 4px 0 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .alert {
+    background: #1e1408;
+    border: 1px solid #4a3510;
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #d4b060;
+  }
+  .alert.red {
+    background: #1e0808;
+    border-color: #4a1a1a;
+    border-left-color: var(--accent3);
+    color: #d07070;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Türk Dili II <span>// VİZE</span></h1>
+  <div class="meta">10 Modül · Sınav Notu<br>Ostim Teknik Üniversitesi</div>
+</header>
+
+<div class="grid">
+
+  <!-- MOD 1 -->
+  <div class="card">
+    <div class="card-header"><span class="num">01</span><h2>Yazılı İletişim Araçları</h2></div>
+    <div class="card-body">
+      <table class="cmp">
+        <tr><th>Tür</th><th>Özellik / Örnek</th></tr>
+        <tr><td>Geleneksel (Basılı)</td><td>Mektup, dilekçe, gazete · Fiziksel arşiv</td></tr>
+        <tr><td>Dijital (Elektronik)</td><td>E-posta, SMS, EBYS · Zaman/mekân bağımsız</td></tr>
+        <tr><td>Akademik</td><td>Makale, tez · Nesnellik + kaynak zorunlu</td></tr>
+      </table>
+      <div class="alert">EBYS = resmî belgelerin dijital, güvenli ortamda saklandığı sistem → hukuki delil niteliği taşır.</div>
+    </div>
+  </div>
+
+  <!-- MOD 2 -->
+  <div class="card">
+    <div class="card-header"><span class="num">02</span><h2>Metin Türleri</h2></div>
+    <div class="card-body">
+      <table class="cmp">
+        <tr><th>Tür</th><th>Soru / Amaç</th></tr>
+        <tr><td>Bilgilendirici</td><td>"Bu nedir?" → doğrudan tanım</td></tr>
+        <tr><td>Açıklayıcı</td><td>"Nasıl / Neden?" → neden-sonuç, adım adım</td></tr>
+        <tr><td>Tartışmacı</td><td>Görüş savunmak → kanıt + karşı görüşü çürütmek</td></tr>
+        <tr><td>Resmî</td><td>Kurumsal · Kalıp ifadeler · Kişisel yorum YOK</td></tr>
+        <tr><td>Akademik</td><td>Kaynak zorunlu · Teknik terim · Nesnel</td></tr>
+        <tr><td>Gündelik</td><td>Samimi · Esnek kurallar · Kısaltma, deyim</td></tr>
+      </table>
+      <div class="alert">Tartışmacı yapı: Giriş (tez) → Gelişme (kanıt + çürütme) → Sonuç (vurgu)</div>
+    </div>
+  </div>
+
+  <!-- MOD 3 -->
+  <div class="card">
+    <div class="card-header"><span class="num">03</span><h2>Etkili Yazılı İletişim</h2></div>
+    <div class="card-body">
+      <div class="row"><span class="tag ö">TANIM</span><div class="content"><strong>Netlik</strong> — yoruma yer bırakmayan açıklık</div></div>
+      <div class="row"><span class="tag ö">TANIM</span><div class="content"><strong>Özlülük</strong> — az sözle çok şey; gereksiz tekrar yok</div></div>
+      <div class="row"><span class="tag ö">TANIM</span><div class="content"><strong>Tutarlılık</strong> — baştan sona aynı üslup & terminoloji</div></div>
+      <div class="row"><span class="tag k">KURAL</span><div class="content">Resmî metinde <em>"siz"</em> dili + edilgen çatı (<em>yapılmıştır, edilmiştir</em>)</div></div>
+      <div class="row"><span class="tag k">KURAL</span><div class="content">Yapı: Giriş (konu) → Gelişme (kanıt) → Sonuç (özet / eylem çağrısı)</div></div>
+      <div class="row"><span class="tag e">İPUCU</span><div class="content">Son okuma: mantık hataları + yazım yanlışları ayıklanır</div></div>
+    </div>
+  </div>
+
+  <!-- MOD 4 -->
+  <div class="card">
+    <div class="card-header"><span class="num">04</span><h2>Metin İnşası — Bölümler</h2></div>
+    <div class="card-body">
+      <div class="row"><span class="tag y">GİRİŞ</span><div class="content">Konu + amaç tanıtılır, merak uyandırılır. <strong>Kısa & net.</strong></div></div>
+      <div class="row"><span class="tag k">GELİŞME</span><div class="content">Ana düşünce genişletilir. Örnekleme, tanık gösterme, karşılaştırma kullanılır.</div></div>
+      <div class="row"><span class="tag ö">SONUÇ</span><div class="content">Yargıya bağlanır, ana fikir son kez vurgulanır. <strong>Yeni konu girilmez.</strong></div></div>
+      <div class="alert">Tanık gösterme: uzman / ünlü sözünü tırnak içinde vermek → inandırıcılık↑</div>
+    </div>
+  </div>
+
+  <!-- MOD 5 -->
+  <div class="card">
+    <div class="card-header"><span class="num">05</span><h2>Düşünceyi Geliştirme Yolları</h2></div>
+    <div class="card-body">
+      <div class="row"><span class="tag k">TANIM</span><div class="content"><strong>Tanımlama</strong> — "Bu nedir?" · Nesnel veya öznel olabilir</div></div>
+      <div class="row"><span class="tag y">ÖRNEK</span><div class="content"><strong>Örnek verme</strong> — soyutu somutlaştırır · <em>mesela, söz gelimi</em></div></div>
+      <div class="row"><span class="tag ö">KARŞI</span><div class="content"><strong>Karşılaştırma</strong> — benzerlik/fark · <em>daha, en, kadar</em></div></div>
+      <div class="row"><span class="tag e">TANIK</span><div class="content"><strong>Tanık gösterme</strong> — uzman sözü tırnak içinde → güvenilirlik</div></div>
+      <div class="alert">Giriş paragrafı <em>"Bence"</em> veya <em>"Dolayısıyla"</em> ile başlamaz.</div>
+    </div>
+  </div>
+
+  <!-- MOD 6 -->
+  <div class="card">
+    <div class="card-header"><span class="num">06</span><h2>Noktalama İşaretleri</h2></div>
+    <div class="card-body">
+      <div class="row"><span class="tag ö">;</span><div class="content">İçinde virgül bulunan grupları ayırır. Virgülün üst segmenti.<br><em>Erkek: Doğan, Tuğrul; kız: İnci, Çiçek</em></div></div>
+      <div class="row"><span class="tag k">:</span><div class="content">Açıklama/örnek gelecek cümle sonuna. Cümle geliyorsa → büyük harf; örnekler geliyorsa → küçük harf.</div></div>
+      <div class="row"><span class="tag y">...</span><div class="content">Eksiltili cümle sonu veya yazılmak istenmeyen sözcük yerine.</div></div>
+      <div class="row"><span class="tag e">'</span><div class="content">Özel ad, sayı, kısaltmaya gelen çekim eklerini ayırır.<br><em>Türkiye'miz · TDK'den · TRT'den</em></div></div>
+      <div class="row"><span class="tag n">mı/mi</span><div class="content">Zaman anlamı katıyorsa soru işareti konmaz.<br><em>Hava karardı mı eve gideriz.</em></div></div>
+      <div class="row"><span class="tag k">—</span><div class="content">Uzun çizgi = sadece konuşma çizgisi.<br>Kısa çizgi - = satır sonu + <em>Ankara-İstanbul</em> gibi "arasında" anlamı.</div></div>
+    </div>
+  </div>
+
+  <!-- MOD 7 -->
+  <div class="card">
+    <div class="card-header"><span class="num">07</span><h2>Yazım Kuralları</h2></div>
+    <div class="card-body">
+      <div class="row"><span class="tag y">BÜYÜK</span><div class="content">Özel ad, kurum, bayram, tarihi olay → büyük harf.<br><em>Türk Dil Kurumu, Kurban Bayramı, Kurtuluş Savaşı</em></div></div>
+      <div class="row"><span class="tag k">SAYI</span><div class="content">Metin içinde harfle yazılır. Para işlemlerinde (çek, senet) bitişik.</div></div>
+      <div class="row"><span class="tag ö">de/ki</span><div class="content">Bağlaç "de" & "ki" her zaman <strong>ayrı</strong> yazılır. Cümleden çıkınca anlam <em>tamamen</em> bozulmaz.</div></div>
+      <div class="row"><span class="tag e">BİRLEŞİK</span><div class="content">Anlam değişikliği YOK → ayrı yaz (<em>köpek balığı</em>)<br>Anlam kayması VAR → bitişik (<em>hanımeli, suçiçeği</em>)</div></div>
+      <div class="row"><span class="tag n">YÖN</span><div class="content">Özel isimden önce → büyük (<em>Doğu Anadolu</em>)<br>Sonra → küçük (<em>Anadolu'nun doğusu</em>)</div></div>
+      <div class="alert">Akrabalık adı lakap/unvan ise büyük: <em>Nene Hatun</em> — gerçek akrabalık ise küçük: <em>Ayşe teyzem</em></div>
+    </div>
+  </div>
+
+  <!-- MOD 8 -->
+  <div class="card">
+    <div class="card-header"><span class="num">08</span><h2>Resmî & Meslekî Yazışmalar</h2></div>
+    <div class="card-body">
+      <div class="row"><span class="tag k">ARZ</span><div class="content">Alt makam → üst makama bilgi sunar / talep eder.<br><em>"...arz ederim."</em></div></div>
+      <div class="row"><span class="tag ö">RİCA</span><div class="content">Üst makam → alt makama iş yaptırır.<br><em>"...rica ederim."</em></div></div>
+      <div class="row"><span class="tag y">HİTAP</span><div class="content">Üst makam: <em>"Sayın Hocam,"</em> veya <em>"Sayın Genel Müdür,"</em></div></div>
+      <div class="row"><span class="tag n">KAPANIS</span><div class="content"><em>"Saygılarımla,"</em> — <strong>"Sevgilerimle"</strong> öğrenci-hoca ilişkisinde <span style="color:var(--accent3)">HATA</span></div></div>
+      <div class="row"><span class="tag e">E-POSTA</span><div class="content">Konu satırı boş bırakılmaz · Hafta sonu/gece geç gönderim saygısızlık · Toplu gizli gönderimde <strong>Bcc</strong> kullanılır</div></div>
+    </div>
+  </div>
+
+  <!-- MOD 10 KESME - critical details -->
+  <div class="card">
+    <div class="card-header"><span class="num">10</span><h2>Kesme İşareti — Kritik Fark</h2></div>
+    <div class="card-body">
+      <div class="row"><span class="tag y">AYRI</span><div class="content">Özel isimlere gelen ekler kesmeyle ayrılır.<br><em>Türkiye'miz · Fatih Sultan Mehmet'e · Kaan'a</em></div></div>
+      <div class="row"><span class="tag n">BİTİŞİK</span><div class="content">Kurum/kuruluş adlarına gelen ekler kesme almaz.<br><em>Türk Dil Kurumuna · OSTİM Teknik Üniversitesinden</em></div></div>
+      <div class="row"><span class="tag k">KISALTMA</span><div class="content">Büyük harf kısaltma → son harfin okunuşu esas: <em>TDK'den, TRT'den</em><br>Küçük harf kısaltma → kelimenin okunuşu: <em>kg'dan, mm'den</em></div></div>
+      <div class="alert red">⚠ "Okul'a" yanlış → "Okula" doğru. Kurum adı = kesme yok.</div>
+    </div>
+  </div>
+
+  <!-- MOD 9 -->
+  <div class="card">
+    <div class="card-header"><span class="num">09</span><h2>Yazı & Yazılı Kültür</h2></div>
+    <div class="card-body">
+      <table class="cmp">
+        <tr><th></th><th>Sözlü Kültür</th><th>Yazılı Kültür</th></tr>
+        <tr><td>Bilgi</td><td>Hafıza bağımlı</td><td>Dışsallaşmış, analiz edilebilir</td></tr>
+        <tr><td>Yapı</td><td>Dinamik, değişken</td><td>Durağan, kuralcı</td></tr>
+        <tr><td>Araç</td><td>Tekrar, atasözü</td><td>Arşiv, sınıflandırma</td></tr>
+      </table>
+      <div class="alert" style="margin-top:10px">Kalıcılık = yazılı iletişimin temel özelliği. Söz uçar, yazı kalır.</div>
+    </div>
+  </div>
+
+  <!-- ÖZET KARTI - full width -->
+  <div class="card full">
+    <div class="card-header"><span class="num">★</span><h2>Sınava Girerken — Hızlı Kontrol Listesi</h2></div>
+    <div class="card-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding-top:4px;">
+        <div>
+          <div class="divider">// Metin Türü Sorusu</div>
+          <div class="pill-list">
+            <span class="pill a">Bilgilendirici = Ne?</span>
+            <span class="pill b">Açıklayıcı = Nasıl/Neden?</span>
+            <span class="pill c">Tartışmacı = İkna et</span>
+            <span class="pill d">Resmî = Kalıp + Edilgen</span>
+          </div>
+        </div>
+        <div>
+          <div class="divider">// Noktalama Tuzakları</div>
+          <div class="pill-list">
+            <span class="pill a">; = grup ayırıcı</span>
+            <span class="pill b">mı/mi ayrı yazılır</span>
+            <span class="pill c">de/ki bağlaç = ayrı</span>
+            <span class="pill d">Kurum + ek = kesme yok</span>
+          </div>
+        </div>
+        <div>
+          <div class="divider">// Resmî Yazı Kriterleri</div>
+          <div class="pill-list">
+            <span class="pill a">Arz = alt → üst</span>
+            <span class="pill b">Rica = üst → alt</span>
+            <span class="pill c">Siz dili + edilgen çatı</span>
+            <span class="pill d">Kapanış: Saygılarımla</span>
+          </div>
+        </div>
+        <div>
+          <div class="divider">// Yazım Kuralı Özeti</div>
+          <div class="pill-list">
+            <span class="pill a">Sayı → harfle yaz</span>
+            <span class="pill b">Özel ad → büyük harf</span>
+            <span class="pill c">Birleşik: anlam kayarsa bitişik</span>
+            <span class="pill d">Yön: önce büyük, sonra küçük</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
