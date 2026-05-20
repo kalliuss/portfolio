@@ -13,7 +13,8 @@ function boslukluKarakterHesapla(text){
 }
 
 function wordCountFunc(text){
-    const count = text.split(/\s+/).length -1 ; // ozel regex
+    const trimmed = text.trim();
+    const count = trimmed === '' ? 0 : trimmed.split(/\s+/).length;
     wordCount.textContent = `${count}`;
 }
 
