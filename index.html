@@ -2,668 +2,370 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kaan Bilgili</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Kaan Bilgili — Junior Developer</title>
 
-    :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --border: #1e1e1e;
-      --text: #e2e2e2;
-      --muted: #555;
-      --accent: #00ff88;
-      --accent-dim: #00ff8822;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'Syne', sans-serif;
-    }
+  <meta name="description" content="Kaan Bilgili — Junior Developer & MIS student. JavaScript odaklı projeler, deneyler ve ders notları." />
+  <meta name="theme-color" content="#0d0e16" id="themeColorMeta" />
 
-    html { scroll-behavior: smooth; }
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kaan Bilgili — Junior Developer" />
+  <meta property="og:description" content="JavaScript odaklı Junior Developer & MIS student. Projeler, deneyler ve ders notları." />
+  <meta property="og:url" content="https://kaanbilgili.com" />
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--mono);
-      font-size: 14px;
-      line-height: 1.7;
-      cursor: none;
-    }
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css?v=5" />
 
-    /* Custom cursor */
-    .cursor {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease;
-      mix-blend-mode: screen;
-    }
-    .cursor-ring {
-      width: 30px; height: 30px;
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transition: all 0.15s ease;
-      opacity: 0.5;
-    }
-
-    /* Noise overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 100;
-      opacity: 0.35;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 50;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 48px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
-    .nav-logo span { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* SECTIONS */
-    section {
-      min-height: 100vh;
-      padding: 120px 48px 80px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 48px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .section-label::after {
-      content: '';
-      height: 1px;
-      width: 60px;
-      background: var(--accent);
-      display: block;
-      opacity: 0.4;
-    }
-
-    /* HERO */
-    #hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .hero-prompt {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-    .hero-prompt .blink {
-      display: inline-block;
-      width: 8px; height: 14px;
-      background: var(--accent);
-      vertical-align: middle;
-      margin-left: 4px;
-      animation: blink 1.1s step-end infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
-
-    .hero-name {
-      font-family: var(--sans);
-      font-size: clamp(48px, 8vw, 88px);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 32px;
-      letter-spacing: 0.04em;
-    }
-    .hero-title .highlight { color: var(--accent); }
-
-    .hero-bio {
-      max-width: 520px;
-      color: #888;
-      font-size: 13px;
-      line-height: 1.9;
-      border-left: 2px solid var(--border);
-      padding-left: 20px;
-      margin-bottom: 40px;
-    }
-
-    .hero-links {
-      display: flex;
-      gap: 16px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      transition: all 0.2s;
-      cursor: none;
-    }
-    .btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-dim);
-    }
-    .btn-primary {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .btn-primary:hover { background: var(--accent); color: var(--bg); }
-
-    /* PROJECTS */
-    .project-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .project-card {
-      background: var(--bg);
-      padding: 32px;
-      transition: background 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 2px;
-      height: 0;
-      background: var(--accent);
-      transition: height 0.3s ease;
-    }
-    .project-card:hover { background: var(--surface); }
-    .project-card:hover::before { height: 100%; }
-
-    .project-num {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 16px;
-      letter-spacing: 0.1em;
-    }
-    .project-name {
-      font-family: var(--sans);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .project-desc {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .tag {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-dim);
-      padding: 3px 8px;
-    }
-    .project-link {
-      position: absolute;
-      top: 32px; right: 32px;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 16px;
-      transition: color 0.2s;
-    }
-    .project-link:hover { color: var(--accent); }
-
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .skill-group h3 {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-      font-size: 13px;
-      color: #888;
-      border-bottom: 1px solid #111;
-    }
-    .skill-item::before {
-      content: '▸';
-      color: var(--accent);
-      font-size: 10px;
-      opacity: 0.7;
-    }
-
-    /* CONTACT */
-    #contact {
-      min-height: auto;
-      padding-bottom: 120px;
-    }
-    .contact-heading {
-      font-family: var(--sans);
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 16px;
-      line-height: 1.1;
-    }
-    .contact-heading span { color: var(--accent); }
-    .contact-sub {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 40px;
-    }
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      color: #666;
-      text-decoration: none;
-      font-size: 13px;
-      padding: 16px;
-      border: 1px solid var(--border);
-      transition: all 0.2s;
-    }
-    .contact-item:hover {
-      border-color: var(--accent);
-      color: var(--text);
-      background: var(--accent-dim);
-    }
-    .contact-item .label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      width: 80px;
-      flex-shrink: 0;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 48px;
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-    }
-
-    /* FADE IN */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 640px) {
-      nav { padding: 16px 24px; }
-      section { padding: 100px 24px 60px; }
-      .project-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
-    }
-  </style>
+  <!-- Tema: ilk boyamadan önce uygula (flash önleme) -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <nav>
-    <div class="nav-logo"><span>~/</span>kallius</div>
-    <ul class="nav-links">
-      <li><a href="#hero">about</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="#skills">skills</a></li>
-      <li><a href="#activity">activity</a></li>
-      <li><a href="#contact">contact</a></li>
-    </ul>
-  </nav>
+  <!-- TEMA TOGGLE -->
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Açık / koyu tema değiştir" title="Tema değiştir">
+    <span class="theme-icon icon-moon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </span>
+    <span class="theme-icon icon-sun" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </span>
+  </button>
 
   <!-- HERO -->
   <section id="hero">
-    <p class="hero-prompt">$ whoami<span class="blink"></span></p>
+    <span class="hero-badge">~/kallius</span>
     <h1 class="hero-name">Kaan Bilgili</h1>
-    <p class="hero-title"><span class="highlight">Junior Developer</span> · MIS student · builder</p>
+    <p class="hero-subtitle">Junior Developer · MIS student · builder</p>
     <p class="hero-bio">
-      JavaScript odaklı, backend'den mobil'e uzanan bir yığın üzerinde çalışıyorum.
-      Temiz kod, doğru soyutlama ve ölçeklenebilir sistemler üzerine düşünüyorum.
+      JavaScript tabanlı uygulama geliştirme ve yapay zekâ destekli sistemler üzerine
+      çalışan bir Yönetim Bilişim Sistemleri öğrencisiyim. Temiz kod, sağlam temeller ve
+      büyük dil modellerinin yazılım geliştirmedeki kullanımı başlıca ilgi alanlarım.
     </p>
-    <div class="hero-links">
-      <a href="#projects" class="btn btn-primary">→ projects</a>
-      <a href="#contact" class="btn">get in touch</a>
-      <a href="https://drive.google.com/file/d/1cixRH878W4uLaHKv94jQdtf7BYLLcbpU/view?usp=drive_link" class="btn">CV/resume ↗</a>
+    <div class="hero-cta">
+      <a href="#projects" class="btn" data-scroll="projects">→ projects</a>
+      <a href="#contact" class="btn" data-scroll="contact">get in touch</a>
+      <a href="https://drive.google.com/file/d/1cixRH878W4uLaHKv94jQdtf7BYLLcbpU/view?usp=drive_link"
+         class="btn btn-accent" target="_blank" rel="noopener">CV/resume ↗</a>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <h2 class="section-title">journey</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-rail"><span class="timeline-dot"></span></div>
+        <div class="timeline-content glass">
+          <span class="timeline-date">Mart 2026</span>
+          <h3 class="timeline-title">301: JavaScript</h3>
+          <span class="timeline-org">Turkcell Geleceği Yazanlar</span>
+          <p class="timeline-desc">JavaScript temelleri ve dilde genel hâkimiyet.</p>
+          <span class="timeline-tag">sertifika</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-rail"><span class="timeline-dot"></span></div>
+        <div class="timeline-content glass">
+          <span class="timeline-date">Ocak 2026</span>
+          <h3 class="timeline-title">Introduction to Software Engineering</h3>
+          <span class="timeline-org">IBM</span>
+          <p class="timeline-desc">Yazılım geliştirme yaşam döngüsü (SDLC), Agile/Scrum, gereksinim analizi ve temel sistem tasarımı.</p>
+          <span class="timeline-tag">sertifika</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-rail"><span class="timeline-dot"></span></div>
+        <div class="timeline-content glass">
+          <span class="timeline-date">Ocak 2026</span>
+          <h3 class="timeline-title">Üretken Yapay Zekaya Giriş</h3>
+          <span class="timeline-org">Google Cloud</span>
+          <p class="timeline-desc">Üretken yapay zekâ kavramları, geleneksel YZ'den farkları ve metin / içerik üretimi kullanım alanları.</p>
+          <span class="timeline-tag">sertifika</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-rail"><span class="timeline-dot"></span></div>
+        <div class="timeline-content glass">
+          <span class="timeline-date">Eylül 2024 — Devam ediyor</span>
+          <h3 class="timeline-title">Yönetim Bilişim Sistemleri — Lisans</h3>
+          <span class="timeline-org">OSTİM Teknik Üniversitesi · İİBF</span>
+          <p class="timeline-desc">Bilgi sistemleri, yazılım geliştirme ve dijital teknolojiler üzerine eğitim. %50 Başarı Bursu.</p>
+          <span class="timeline-tag tag-edu">eğitim</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- PROJECTS -->
   <section id="projects">
-    <div class="section-label">projects</div>
-    <div class="project-grid fade-in">
+    <h2 class="section-title">projects</h2>
+    <div class="projects-grid">
 
-      <div class="project-card">
-        <a href="https://github.com/kalliuss/library-reservation-system" class="project-link">↗</a>
-        <div class="project-num">01</div>
-        <div class="project-name">Library-Reservation-System</div>
+      <article class="project-card">
+        <a href="https://github.com/kalliuss/library-reservation-system" class="project-link" target="_blank" rel="noopener" aria-label="Library-Reservation-System reposunu aç">↗</a>
+        <span class="project-number">01</span>
+        <h3 class="project-title">Library-Reservation-System</h3>
         <p class="project-desc">Basic 'Kütüphane Rezervasyon' sistemi.</p>
         <div class="project-tags">
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
           <span class="tag">JavaScript</span>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card">
-        <a href="https://github.com/kalliuss/HabitTrack.JS-v1" class="project-link">↗</a>
-        <div class="project-num">02</div>
-        <div class="project-name">HabitTrack.JS-v1</div>
+      <article class="project-card">
+        <a href="https://github.com/kalliuss/HabitTrack.JS-v1" class="project-link" target="_blank" rel="noopener" aria-label="HabitTrack.JS-v1 reposunu aç">↗</a>
+        <span class="project-number">02</span>
+        <h3 class="project-title">HabitTrack.JS-v1</h3>
         <p class="project-desc">'Günlük Alışkanlık Takibi' için modern, hafif ve tamamen JavaScript ile geliştirilmiş bir web uygulaması.</p>
         <div class="project-tags">
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
           <span class="tag">JavaScript</span>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card">
-        <a href="https://github.com/kalliuss/myJavaProjects" class="project-link">↗</a>
-        <div class="project-num">03</div>
-        <div class="project-name">My Java Projects</div>
+      <article class="project-card">
+        <a href="https://github.com/kalliuss/myJavaProjects" class="project-link" target="_blank" rel="noopener" aria-label="My Java Projects reposunu aç">↗</a>
+        <span class="project-number">03</span>
+        <h3 class="project-title">My Java Projects</h3>
         <p class="project-desc">Temel gelişim odaklı yaptığım 'Java Projeleri'.</p>
         <div class="project-tags">
           <span class="tag">Java</span>
-          <span class="tag">~</span>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card">
-        <a href="https://github.com/kalliuss/todo-app" class="project-link">↗</a>
-        <div class="project-num">04</div>
-        <div class="project-name">Todo App</div>
+      <article class="project-card">
+        <a href="https://github.com/kalliuss/todo-app" class="project-link" target="_blank" rel="noopener" aria-label="Todo App reposunu aç">↗</a>
+        <span class="project-number">04</span>
+        <h3 class="project-title">Todo App</h3>
         <p class="project-desc">Temel gelişim odaklı yaptığım JavaScript 'To-Do' uygulaması.</p>
         <div class="project-tags">
           <span class="tag">JavaScript</span>
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
-
         </div>
-      </div>
+      </article>
 
-      <div class="project-card">
-        <a href="text-analysis-tool/index.html" class="project-link">↗</a>
-        <div class="project-num">05</div>
-        <div class="project-name">Text Analysis Tool</div>
+      <article class="project-card">
+        <a href="text-analysis-tool/index.html" class="project-link" aria-label="Text Analysis Tool aracını aç">↗</a>
+        <span class="project-number">05</span>
+        <h3 class="project-title">Text Analysis Tool</h3>
         <p class="project-desc">Temel gelişim odaklı yaptığım JavaScript 'Metin Analiz Aracı' uygulaması.</p>
         <div class="project-tags">
           <span class="tag">JavaScript</span>
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
-
         </div>
-      </div>
+      </article>
 
-      <div class="project-card">
-        <a href="https://github.com/kalliuss/SQL-Lesson" class="project-link">↗</a>
-        <div class="project-num">06</div>
-        <div class="project-name">SQL-Lesson</div>
+      <article class="project-card">
+        <a href="https://github.com/kalliuss/SQL-Lesson" class="project-link" target="_blank" rel="noopener" aria-label="SQL-Lesson reposunu aç">↗</a>
+        <span class="project-number">06</span>
+        <h3 class="project-title">SQL-Lesson</h3>
         <p class="project-desc">'Veri Tabanı Yönetim Sistemleri' ders notlarım.</p>
         <div class="project-tags">
           <span class="tag">MSSQL</span>
           <span class="tag">PostgreSQL</span>
-          <span class="tag">Veri Tabanı Tasarımı & Yönetimi</span>
-
+          <span class="tag">Veri Tabanı</span>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card">
-        <a href="dersler/turk_dili_cheatsheet.html" class="project-link">↗</a>
-        <div class="project-num">07</div>
-        <div class="project-name">TUR102 - Ders Notlarım</div>
+      <article class="project-card">
+        <a href="dersler/turk_dili_cheatsheet.html" class="project-link" aria-label="TUR102 ders notlarını aç">↗</a>
+        <span class="project-number">07</span>
+        <h3 class="project-title">TUR102 — Ders Notlarım</h3>
         <p class="project-desc">'Türk Dili 2' ders notlarım.</p>
         <div class="project-tags">
           <span class="tag">Türkçe</span>
           <span class="tag">Akademik</span>
-          <span class="tag">-</span>
-
         </div>
-      </div>
+      </article>
 
-      <div class="project-card">
-        <a href="https://github.com/kalliuss/kallius-bot" class="project-link">↗</a>
-        <div class="project-num">08</div>
-        <div class="project-name">Kallius-Bot v1.0</div>
-        <p class="project-desc">Temel gelişim odaklı yaptığım JavaScript ile kodladığım temel moderasyon discord botudur.</p>
+      <article class="project-card">
+        <a href="https://github.com/kalliuss/kallius-bot" class="project-link" target="_blank" rel="noopener" aria-label="Kallius-Bot reposunu aç">↗</a>
+        <span class="project-number">08</span>
+        <h3 class="project-title">Kallius-Bot v1.0</h3>
+        <p class="project-desc">Temel gelişim odaklı yaptığım, JavaScript ile kodladığım temel moderasyon discord botudur.</p>
         <div class="project-tags">
           <span class="tag">JavaScript</span>
           <span class="tag">NodeJS</span>
-          <span class="tag">discordjs</span>
-
+          <span class="tag">discord.js</span>
         </div>
-      </div>
+      </article>
+
+      <article class="project-card">
+        <a href="https://github.com/kalliuss/portfolio/tree/main/password-generate" class="project-link" target="_blank" rel="noopener" aria-label="Password Generator kaynağını aç">↗</a>
+        <span class="project-number">09</span>
+        <h3 class="project-title">Password Generator</h3>
+        <p class="project-desc">Temel gelişim odaklı yaptığım JavaScript 'Şifre Üretici' uygulaması.</p>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </article>
 
     </div>
   </section>
 
   <!-- SKILLS -->
   <section id="skills">
-    <div class="section-label">skills</div>
-    <div class="skills-grid fade-in">
+    <h2 class="section-title">skills</h2>
+    <div class="skills-grid">
 
-      <div class="skill-group">
-        <h3>Frontend</h3>
-        <div class="skill-item">JavaScript</div>
-        <!-- <div class="skill-item">TypeScript</div> -->
-        <!-- <div class="skill-item">React</div> -->
-        <div class="skill-item">HTML / CSS</div>
-        <!-- <div class="skill-item">React Native</div> -->
+      <div class="skill-group glass">
+        <h3 class="skill-group-title">Frontend</h3>
+        <ul class="skill-list">
+          <li class="skill-item primary">JavaScript</li>
+          <li class="skill-item">HTML / CSS</li>
+        </ul>
       </div>
 
-      <div class="skill-group">
-        <h3>Backend</h3>
-        <div class="skill-item">Basic Node.js</div>
-        <div class="skill-item">Basic Python</div>
-        <div class="skill-item">Basic Java</div>
-        <!-- <div class="skill-item">SQL / PostgreSQL</div> -->
-        <!-- <div class="skill-item">Auth & Sessions</div> -->
+      <div class="skill-group glass">
+        <h3 class="skill-group-title">Backend</h3>
+        <ul class="skill-list">
+          <li class="skill-item">Basic Node.js</li>
+          <li class="skill-item">Basic Python</li>
+          <li class="skill-item">Basic Java</li>
+        </ul>
       </div>
 
-      <div class="skill-group">
-        <h3>Tooling</h3>
-        <div class="skill-item">Git / GitHub</div>
-        <div class="skill-item">VS Code</div>
-        <div class="skill-item">npm / pnpm</div>
-        <div class="skill-item">CLI</div>
-        <div class="skill-item">Canva</div>
-        <div class="skill-item">Microsoft Office Systems</div>
-        <div class="skill-item">Microsoft SQL</div>
-
+      <div class="skill-group glass">
+        <h3 class="skill-group-title">Tooling</h3>
+        <ul class="skill-list">
+          <li class="skill-item primary">Git / GitHub</li>
+          <li class="skill-item">VS Code</li>
+          <li class="skill-item">npm / pnpm</li>
+          <li class="skill-item">CLI</li>
+          <li class="skill-item">Canva</li>
+          <li class="skill-item">MS Office</li>
+          <li class="skill-item">MS SQL</li>
+        </ul>
       </div>
 
     </div>
   </section>
 
   <!-- GITHUB ACTIVITY -->
-  <section id="activity" style="min-height:auto;padding-top:40px;">
-    <div class="section-label">github activity</div>
-    <div style="border:1px solid var(--border);background:var(--surface);padding:32px;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:0;left:0;width:2px;height:100%;background:var(--accent);opacity:0.6;"></div>
+  <section id="activity">
+    <h2 class="section-title">github activity</h2>
+    <div class="glass activity-card">
       <img
-        src="https://ghchart.rshah.org/00ff88/kalliuss"
+        src="https://ghchart.rshah.org/818cf8/kalliuss"
         alt="GitHub katkı grafiği"
-        style="width:100%;display:block;filter:invert(1) hue-rotate(100deg) brightness(1.3) contrast(1.6) saturate(1.4);opacity:0.95;"
+        class="activity-img"
+        loading="lazy"
       />
     </div>
   </section>
 
-
   <!-- CONTACT -->
   <section id="contact">
-    <div class="section-label">contact</div>
-    <h2 class="contact-heading fade-in">Let's build<br/><span>something.</span></h2>
-    <p class="contact-sub fade-in">Proje, iş teklifi veya sadece teknik sohbet — iletişime geç.</p>
-    <div class="contact-links fade-in">
-      <a href="mailto:kalliusdev@gmail.com" class="contact-item">
-        <span class="label">email</span>
-        kalliusdev@gmail.com
+    <h2 class="section-title">contact</h2>
+    <h3 class="contact-heading">Let's build<br /><span>something.</span></h3>
+    <p class="contact-sub">Proje, iş teklifi veya sadece teknik sohbet — iletişime geç.</p>
+    <div class="contact-links">
+      <div class="contact-item contact-item--email">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </span>
+        <span class="contact-label">email</span>
+        <a class="contact-value contact-mail" href="mailto:kalliusdev@gmail.com">kalliusdev@gmail.com</a>
+        <button type="button" class="copy-btn" data-copy="kalliusdev@gmail.com" aria-label="E-posta adresini kopyala" title="Kopyala">
+          <span class="copy-ico copy-default" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </span>
+          <span class="copy-ico copy-done" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </span>
+        </button>
+      </div>
+      <a href="https://github.com/kalliuss" class="contact-item" target="_blank" rel="noopener">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </span>
+        <span class="contact-label">github</span>
+        <span class="contact-value">github.com/kalliuss</span>
       </a>
-      <a href="https://github.com/kalliuss" target="_blank" class="contact-item">
-        <span class="label">github</span>
-        github.com/kalliuss
-      </a>
-      <a href="https://www.linkedin.com/in/hüseyin-kaan-bilgili-34b9592a4" target="_blank" class="contact-item">
-        <span class="label">linkedin</span>
-        linkedin.com/
+      <a href="https://www.linkedin.com/in/hüseyin-kaan-bilgili-34b9592a4" class="contact-item" target="_blank" rel="noopener">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </span>
+        <span class="contact-label">linkedin</span>
+        <span class="contact-value">in/hüseyin-kaan-bilgili</span>
       </a>
     </div>
+    <footer class="footer">
+      <span>© 2026 Kaan Bilgili</span>
+      <span>designed &amp; built by Kalliuss</span>
+    </footer>
   </section>
 
-  <footer>
-    <span>© 2026 Kaan Bilgili</span>
-    <span>designed & built by Kalliuss</span>
-  </footer>
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav" role="navigation" aria-label="Ana navigasyon">
+    <a href="#hero" class="nav-item active" data-section="hero">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/><path d="M9 21v-6h6v6"/></svg>
+      </span>
+      <span class="nav-label">home</span>
+    </a>
+    <a href="#journey" class="nav-item" data-section="journey">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+      </span>
+      <span class="nav-label">journey</span>
+    </a>
+    <a href="#projects" class="nav-item" data-section="projects">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </span>
+      <span class="nav-label">projects</span>
+    </a>
+    <a href="#skills" class="nav-item" data-section="skills">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+      </span>
+      <span class="nav-label">skills</span>
+    </a>
+    <a href="#activity" class="nav-item" data-section="activity">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </span>
+      <span class="nav-label">activity</span>
+    </a>
+    <a href="#contact" class="nav-item" data-section="contact">
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </span>
+      <span class="nav-label">contact</span>
+    </a>
+  </nav>
 
-  <script>
-    // Cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
+  <!-- TOAST -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx - 4 + 'px';
-      cursor.style.top = my - 4 + 'px';
-    });
-
-    (function animateRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx - 15 + 'px';
-      ring.style.top = ry - 15 + 'px';
-      requestAnimationFrame(animateRing);
-    })();
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'scale(2.5)';
-        ring.style.transform = 'scale(0.6)';
-        ring.style.opacity = '1';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'scale(1)';
-        ring.style.transform = 'scale(1)';
-        ring.style.opacity = '0.5';
-      });
-    });
-
-    // Fade in on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Hero fade in immediately
-    document.querySelector('#hero').querySelectorAll('.hero-prompt, .hero-name, .hero-title, .hero-bio, .hero-links').forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(16px)';
-      el.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
-      setTimeout(() => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      }, 100);
-    });
-  </script>
-
+  <script src="main.js?v=5"></script>
 </body>
 </html>
