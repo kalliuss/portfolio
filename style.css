@@ -16,10 +16,10 @@
   --radius-lg:        24px;
   --radius-pill:      999px;
 
-  /* Blur */
-  --blur-sm:          blur(8px);
-  --blur-md:          blur(16px);
-  --blur-lg:          blur(24px);
+  /* Blur (+ saturate: arkadaki rengi cama yansıtır — liquid glass) */
+  --blur-sm:          blur(10px) saturate(150%);
+  --blur-md:          blur(18px) saturate(170%);
+  --blur-lg:          blur(26px) saturate(190%);
 
   /* Nav */
   --nav-height:       72px;
@@ -42,87 +42,93 @@
 /* ---------- DARK (default) ---------- */
 :root,
 :root[data-theme="dark"] {
-  --bg-base:          #0d0e16;
-  --bg-secondary:     #14161f;
+  --bg-base:          #1a1a20;
+  --bg-secondary:     #24242c;
 
-  --glass-bg:         rgba(255, 255, 255, 0.04);
-  --glass-bg-hover:   rgba(255, 255, 255, 0.08);
-  --glass-border:     rgba(255, 255, 255, 0.10);
-  --glass-border-hi:  rgba(255, 255, 255, 0.20);
-  --glass-fallback:   rgba(20, 21, 31, 0.95);
+  --glass-bg:         rgba(255, 255, 255, 0.05);
+  --glass-bg-hover:   rgba(255, 255, 255, 0.11);
+  --glass-border:     rgba(255, 255, 255, 0.16);
+  --glass-border-hi:  rgba(255, 255, 255, 0.32);
+  --glass-fallback:   rgba(32, 32, 40, 0.92);
 
-  --surface-soft:     rgba(255, 255, 255, 0.05);
-  --surface-soft-bd:  rgba(255, 255, 255, 0.08);
+  --surface-soft:     rgba(255, 255, 255, 0.06);
+  --surface-soft-bd:  rgba(255, 255, 255, 0.12);
 
   --accent:           #818cf8;
-  --accent-dim:       rgba(129, 140, 248, 0.15);
-  --accent-glow:      rgba(129, 140, 248, 0.10);
+  --accent-dim:       rgba(129, 140, 248, 0.18);
+  --accent-glow:      rgba(129, 140, 248, 0.14);
 
-  --text-primary:     rgba(255, 255, 255, 0.92);
-  --text-secondary:   rgba(255, 255, 255, 0.55);
-  --text-muted:       rgba(255, 255, 255, 0.32);
+  --text-primary:     rgba(255, 255, 255, 0.94);
+  --text-secondary:   rgba(255, 255, 255, 0.58);
+  --text-muted:       rgba(255, 255, 255, 0.36);
 
-  --nav-bg:           rgba(13, 14, 22, 0.70);
+  --nav-bg:           rgba(26, 26, 32, 0.45);
 
-  --orb-1:            rgba(129, 140, 248, 0.07);
-  --orb-2:            rgba(120, 80, 255, 0.05);
+  --orb-1:            rgba(129, 140, 248, 0.28);
+  --orb-2:            rgba(168, 85, 247, 0.24);
+  --orb-3:            rgba(56, 189, 248, 0.16);
 
   --glass-shadow:
+    0 1px 0 rgba(255,255,255,0.18) inset,
     0 0 0 0.5px rgba(255,255,255,0.06) inset,
-    0 1px 0 rgba(255,255,255,0.12) inset,
-    0 8px 32px rgba(0, 0, 0, 0.40);
+    0 8px 32px rgba(0, 0, 0, 0.45);
   --card-shadow:
-    0 1px 0 rgba(255,255,255,0.10) inset,
-    0 8px 32px rgba(0,0,0,0.30);
+    0 1px 0 rgba(255,255,255,0.16) inset,
+    0 8px 32px rgba(0,0,0,0.35);
   --card-shadow-hover:
-    0 1px 0 rgba(255,255,255,0.14) inset,
-    0 16px 48px rgba(0,0,0,0.50),
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 16px 50px rgba(0,0,0,0.55),
     0 0 0 1px var(--accent-glow);
   --nav-shadow:
-    0 1px 0 rgba(255,255,255,0.12) inset,
-    0 16px 48px rgba(0,0,0,0.60);
+    0 1px 0 rgba(255,255,255,0.20) inset,
+    0 16px 48px rgba(0,0,0,0.55);
 
   color-scheme: dark;
 }
 
 /* ---------- LIGHT ---------- */
 :root[data-theme="light"] {
-  --bg-base:          #f6f7fb;
-  --bg-secondary:     #eceef5;
+  --bg-base:          #e8eaf3;
+  --bg-secondary:     #dde0ec;
 
-  --glass-bg:         rgba(255, 255, 255, 0.55);
-  --glass-bg-hover:   rgba(255, 255, 255, 0.82);
-  --glass-border:     rgba(20, 22, 50, 0.10);
-  --glass-border-hi:  rgba(20, 22, 50, 0.20);
-  --glass-fallback:   rgba(255, 255, 255, 0.92);
+  --glass-bg:         rgba(255, 255, 255, 0.45);
+  --glass-bg-hover:   rgba(255, 255, 255, 0.68);
+  --glass-border:     rgba(255, 255, 255, 0.75);
+  --glass-border-hi:  rgba(255, 255, 255, 0.95);
+  --glass-fallback:   rgba(255, 255, 255, 0.82);
 
-  --surface-soft:     rgba(20, 22, 50, 0.04);
-  --surface-soft-bd:  rgba(20, 22, 50, 0.08);
+  --surface-soft:     rgba(255, 255, 255, 0.5);
+  --surface-soft-bd:  rgba(255, 255, 255, 0.7);
 
   --accent:           #4f46e5;
   --accent-dim:       rgba(79, 70, 229, 0.12);
-  --accent-glow:      rgba(79, 70, 229, 0.14);
+  --accent-glow:      rgba(79, 70, 229, 0.20);
 
-  --text-primary:     rgba(20, 22, 35, 0.92);
-  --text-secondary:   rgba(20, 22, 35, 0.60);
-  --text-muted:       rgba(20, 22, 35, 0.42);
+  --text-primary:     rgba(22, 24, 42, 0.92);
+  --text-secondary:   rgba(22, 24, 42, 0.62);
+  --text-muted:       rgba(22, 24, 42, 0.45);
 
-  --nav-bg:           rgba(246, 247, 251, 0.75);
+  --nav-bg:           rgba(255, 255, 255, 0.45);
 
-  --orb-1:            rgba(129, 140, 248, 0.12);
-  --orb-2:            rgba(180, 160, 255, 0.14);
+  --orb-1:            rgba(129, 140, 248, 0.30);
+  --orb-2:            rgba(192, 132, 252, 0.28);
+  --orb-3:            rgba(56, 189, 248, 0.20);
 
   --glass-shadow:
-    0 1px 2px rgba(20, 22, 50, 0.04),
-    0 8px 32px rgba(20, 22, 50, 0.08);
+    0 1px 0 rgba(255,255,255,0.9) inset,
+    0 2px 8px rgba(30, 35, 80, 0.06),
+    0 12px 40px rgba(30, 35, 80, 0.12);
   --card-shadow:
-    0 1px 2px rgba(20, 22, 50, 0.04),
-    0 8px 24px rgba(20, 22, 50, 0.06);
+    0 1px 0 rgba(255,255,255,0.9) inset,
+    0 2px 8px rgba(30, 35, 80, 0.05),
+    0 10px 32px rgba(30, 35, 80, 0.10);
   --card-shadow-hover:
-    0 12px 40px rgba(20, 22, 50, 0.12),
+    0 1px 0 rgba(255,255,255,1) inset,
+    0 16px 44px rgba(30, 35, 80, 0.18),
     0 0 0 1px var(--accent-glow);
   --nav-shadow:
-    0 8px 32px rgba(20, 22, 50, 0.14);
+    0 1px 0 rgba(255,255,255,0.9) inset,
+    0 12px 40px rgba(30, 35, 80, 0.16);
 
   color-scheme: light;
 }
@@ -144,28 +150,18 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ---------- Ambient Background Orbs ---------- */
-body::before,
-body::after {
+/* ---------- Ambient Background Orbs (cama yansıyan renk) ---------- */
+body::before {
   content: '';
   position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 45% at 12% 6%,  var(--orb-1), transparent 72%),
+    radial-gradient(42% 42% at 88% 16%, var(--orb-2), transparent 72%),
+    radial-gradient(55% 50% at 50% 96%, var(--orb-3), transparent 72%);
   transition: background 0.3s ease;
-}
-
-body::before {
-  width: 600px; height: 600px;
-  top: -200px; left: -200px;
-  background: var(--orb-1);
-}
-
-body::after {
-  width: 500px; height: 500px;
-  bottom: -100px; right: -100px;
-  background: var(--orb-2);
 }
 
 /* ---------- Section ---------- */

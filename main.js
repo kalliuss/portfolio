@@ -18,7 +18,7 @@
 
   // ghchart rengi moda göre değişsin (light'ta daha koyu indigo)
   const CHART_COLOR = { dark: '818cf8', light: '4f46e5' };
-  const META_COLOR = { dark: '#0d0e16', light: '#f6f7fb' };
+  const META_COLOR = { dark: '#1a1a20', light: '#e8eaf3' };
 
   function syncTheme(theme) {
     if (chartImg) {
